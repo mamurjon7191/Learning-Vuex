@@ -1,14 +1,17 @@
 <template>
   <div>
     <h1>{{ counter }}</h1>
-    <button v-on:click="addCounter(value)">+</button>
+    <button v-on:click="removeCounter(value)">-</button>
     <input type="number" v-model="value" />
     <button v-on:click="addCounter(value)">+</button>
+    <div>
+      <a class="random" v-on:click="addRandomNumber">Add by random number</a>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -20,6 +23,7 @@ export default {
   },
   methods: {
     ...mapMutations(["addCounter", "removeCounter"]),
+    ...mapActions(["addRandomNumber"]),
   },
 };
 </script>
@@ -42,5 +46,14 @@ input {
   padding: 0.4rem;
   font-size: 1rem;
   outline: none;
+}
+.random {
+  padding: 0.3rem;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+}
+div {
+  padding: 1rem;
 }
 </style>
